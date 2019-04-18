@@ -35,6 +35,10 @@ public class User {
 	@JoinColumn(name = "CART_ID", referencedColumnName = "cartId")
 	private ShoppingCart shoppingCart;
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<CustomerOrder> customerOrders;
+
+	
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_ROLES", joinColumns={
@@ -92,6 +96,14 @@ public class User {
 
 	public void setShoppingCart(ShoppingCart shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+
+	public List<CustomerOrder> getCustomerOrders() {
+		return customerOrders;
+	}
+
+	public void setCustomerOrders(List<CustomerOrder> customerOrders) {
+		this.customerOrders = customerOrders;
 	}
 
 	public User(String email, String name, String password, String shippingAddress) {

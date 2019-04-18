@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,6 +20,10 @@ public class CustomerOrder {
 	@NotEmpty
 	@Column(unique = true)
 	private Long orderId;
+	
+	@ManyToOne
+	@JoinColumn(name="USER_EMAIL")
+	private User user;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "ORDER_ITEMS", joinColumns={
@@ -43,6 +48,14 @@ public class CustomerOrder {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public CustomerOrder(Long orderId) {
