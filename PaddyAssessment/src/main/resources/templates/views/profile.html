@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Index Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+	
+	<h2>Here are your Trips</h2> 
+
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>City</th>
+							<th>From Date</th>
+							<th>To Date</th>
+							<th>Budget</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="trip:${trips}"><!-- this could be where show list specific to the logged in user -->
+							<td th:text="${trip.city}"></td>
+							<td th:text="${trip.fromDate}"></td>
+							<td th:text="${trip.toDate}"></td>
+							<td th:text="${trip.budget}"></td>
+							<td th:text="${trip.user.email}"></td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

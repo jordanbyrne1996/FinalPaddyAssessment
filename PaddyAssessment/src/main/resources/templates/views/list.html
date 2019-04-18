@@ -1,0 +1,60 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>User Trips Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+		<form action="/trips" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="text" class="form-control" name="city"
+					placeholder="Search Trip" /> <input type="submit" value="Search"
+					class="btn btn-primary" />
+			</div>
+		</form>
+		<form action="/addTrip" class="form-inline">
+			<input type="submit" value="Create New Trip" class="btn btn-primary" />
+		</form>
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>City</th>
+							<th>From Date</th>
+							<th>To Date</th>
+							<th>Budget</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="trip:${trips}">
+							<td th:text="${trip.city}"></td>
+							<td th:text="${trip.fromDate}"></td>
+							<td th:text="${trip.toDate}"></td>
+							<td th:text="${trip.budget}"></td>
+							<td th:text="${trip.user.email}"></td>
+							<td><a th:href="@{/tripExpensePage(tripId=${trip.tripId})}" class="btn btn-primary">Add Trip Expense</a></td>
+						</tr>
+					</tbody>
+
+											"@{/makeOffer(id=${task.id})}"
+
+				</table>
+				
+				<script>
+						jQuery(document).ready(function($) {
+							$(".clickable-row").click(function() {
+								window.location = $(this).data("href");
+							});
+						});
+					</script>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html> -->
