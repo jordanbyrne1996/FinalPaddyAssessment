@@ -30,6 +30,9 @@ public class Item {
 	@ManyToMany(mappedBy = "items")
 	private List<ShoppingCart> shoppingCarts;
 	
+	@ManyToMany(mappedBy = "items")
+	private List<CustomerOrder> customerOrders;
+	
 	
 	public Long getItemId() {
 		return itemId;
@@ -73,6 +76,13 @@ public class Item {
 	}
 	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
 		this.shoppingCarts = shoppingCarts;
+	}
+	
+	public List<CustomerOrder> getCustomerOrders() {
+		return customerOrders;
+	}
+	public void setCustomerOrders(List<CustomerOrder> customerOrders) {
+		this.customerOrders = customerOrders;
 	}
 	
 	public Item(Long itemId, String category, String manufacturer, String title, int quantity, int price) {
