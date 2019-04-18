@@ -22,7 +22,7 @@ public class STAApplication  implements  CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		  {
-    		  User newAdmin = new User("admin@mail.com", "Admin", "123456");
+    		  User newAdmin = new User("admin@mail.com", "Admin", "123456", "headquaters");
     		  userService.createAdmin(newAdmin); 
     	  }
 	}
