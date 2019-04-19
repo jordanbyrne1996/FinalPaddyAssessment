@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Add Item Form</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+	
+		<form th:action="@{/addItem}" th:object="${item}" method="post">
+
+			<div class="form-group">
+				<label for="category" class="form-control-label">Category</label> <input
+					type="text" class="form-control" th:field="*{category}" id="category" />
+				<div class="text text-danger" th:if="${#fields.hasErrors('category')}"
+					th:errors="*{category}"></div> 
+			</div>
+			
+			<div class="form-group">
+				<label for="manufacturer" class="form-control-label">Manufacturer</label> <input
+					type="text" class="form-control" th:field="*{manufacturer}"
+					id="manufacturer" />
+					<div class="text text-danger" th:if="${#fields.hasErrors('manufacturer')}"
+					th:errors="*{manufacturer}"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="title" class="form-control-label">Title</label> <input
+					type="text" class="form-control" th:field="*{title}"
+					id="title" />
+					<div class="text text-danger" th:if="${#fields.hasErrors('title')}"
+					th:errors="*{title}"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="quantity" class="form-control-label">Quantity</label> <input
+					type="number" class="form-control" th:field="*{quantity}"
+					id="quantity" />
+					<div class="text text-danger" th:if="${#fields.hasErrors('quantity')}"
+					th:errors="*{quantity}"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="price" class="form-control-label">Price</label> <input
+					type="number" class="form-control" th:field="*{price}"
+					id="price" />
+					<div class="text text-danger" th:if="${#fields.hasErrors('quantity')}"
+					th:errors="*{quantity}"></div>
+			</div>
+			
+			<input type="submit" value="Add New Item" class="btn btn-primary" />
+
+		</form>
+	</div>
+</body>
+</html>
