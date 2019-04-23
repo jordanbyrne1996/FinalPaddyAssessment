@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Items Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+		<form action="/items" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="text" class="form-control" name="title"
+					placeholder="Search Item Title" /> <input type="submit" value="Search"
+					class="btn btn-primary" />
+			</div>
+		</form>
+		<!-- <form action="/addTrip" class="form-inline">
+			<input type="submit" value="Create New Trip" class="btn btn-primary" />
+		</form> -->
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Category</th>
+							<th>Manufacturer</th>
+							<th>Title</th>
+							<th>Quantity in Stock</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item:${items}">
+							<td th:text="${item.category}"></td>
+							<td th:text="${item.manufacturer}"></td>
+							<td th:text="${item.title}"></td>
+							<td th:text="${item.quantity}"></td>
+							<td th:text="${item.price}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html> 

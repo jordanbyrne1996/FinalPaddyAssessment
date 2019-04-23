@@ -1,5 +1,7 @@
 package org.finalyearproject.services;
 
+import java.util.List;
+
 import org.finalyearproject.entities.Item;
 import org.finalyearproject.entities.User;
 import org.finalyearproject.repositories.ItemRepository;
@@ -20,5 +22,10 @@ public class ItemService {
 		
 		  return itemRepository.findOne(itemId);
 		}
+	
+	public List<Item> findByTitle(String title) {
+		// TODO Auto-generated method stub
+		return  itemRepository.findByTitleLike("%"+title+"%");
+	}
 
 }
