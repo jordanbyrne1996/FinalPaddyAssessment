@@ -6,7 +6,7 @@ import org.finalyearproject.entities.Item;
 import org.finalyearproject.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Integer> {
 	
 	List<Item> findByTitleLike(String title);
 

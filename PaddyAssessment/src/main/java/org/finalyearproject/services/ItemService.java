@@ -18,9 +18,9 @@ public class ItemService {
 		itemRepository.save(item);
 	}
 	
-	public Item findOne(Long itemId) {
+	public Item findOne(int id) {
 		
-		  return itemRepository.findOne(itemId);
+		  return itemRepository.findOne(id);
 		}
 	
 	public List<Item> findByTitle(String title) {
