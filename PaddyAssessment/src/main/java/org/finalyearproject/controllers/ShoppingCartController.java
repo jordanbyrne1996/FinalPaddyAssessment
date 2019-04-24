@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,8 +40,8 @@ public class ShoppingCartController {
 
 	/*@GetMapping("/homepage/addtocart/{id}")*/
 	@GetMapping("/addtocart")
-	public ModelAndView addToCart(@RequestParam("itemId") int id, @RequestParam(defaultValue = "") String title) {
-	ModelAndView model = new ModelAndView();
+	public String addToCart(@RequestParam("itemId") int id, @RequestParam(defaultValue = "") String title, Model model) {
+	//ModelAndView model = new ModelAndView();
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	User user = userService.findOne(auth.getName());
 
@@ -78,13 +79,13 @@ public class ShoppingCartController {
 	shoppingCartService.saveShoppingCart(shoppingCart);
 
 	String successMessage = "";
-	model.addObject("successMessage", successMessage);
+	model.addAttribute("successMessage", successMessage);
 
 	List<Item> items = itemService.findByTitle(title);
-	model.addObject("items", items);
-	model.setViewName("itemList");
+	model.addAttribute("items", items);
+	//model.setViewName("itemList");
 
-	return model;
+	return "views/itemList";
 	}
 
 	@GetMapping("/viewcart")

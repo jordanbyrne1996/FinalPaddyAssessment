@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,14 +22,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class ShoppingCart {
 	
 	@Id
-/*	@Column(unique = true)*/
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartId;
-	
-	/*@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "CART_ITEMS", joinColumns={
-			@JoinColumn(name = "CART_ID", referencedColumnName = "cartId") }, inverseJoinColumns = {
-					@JoinColumn(name = "ITEM_ID", referencedColumnName = "itemId") })
-	private List<Item> items;*/
 	
 	@OneToMany(mappedBy = "shoppingCart")
 	private Set<CartItems> cartItems;
