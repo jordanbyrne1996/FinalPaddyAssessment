@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -31,8 +32,7 @@ public class User {
 	@NotEmpty
 	private String shippingAddress;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "CART_ID", referencedColumnName = "cartId")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
 	private ShoppingCart shoppingCart;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

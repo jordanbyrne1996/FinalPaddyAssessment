@@ -37,13 +37,14 @@ public class ShoppingCartController {
 	@Autowired
 	private CartItemsService cartItemsService;
 
-	@GetMapping("/homepage/addtocart/{id}")
-	public ModelAndView addToCart(@PathVariable("id") int id, @RequestParam(defaultValue = "") String title) {
+	/*@GetMapping("/homepage/addtocart/{id}")*/
+	@GetMapping("/addtocart")
+	public ModelAndView addToCart(@RequestParam("itemId") int id, @RequestParam(defaultValue = "") String title) {
 	ModelAndView model = new ModelAndView();
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	User user = userService.findOne(auth.getName());
 
-	ShoppingCart shoppingCart = shoppingCartService.findByUserId(user.getEmail());
+	ShoppingCart shoppingCart = shoppingCartService.findByUserEmail(user.getEmail());
 	Item item = itemService.findOne(id);
 
 	ArrayList<CartItems> cart_items = new ArrayList<CartItems>();
@@ -81,17 +82,17 @@ public class ShoppingCartController {
 
 	List<Item> items = itemService.findByTitle(title);
 	model.addObject("items", items);
-	model.setViewName("view_items");
+	model.setViewName("itemList");
 
 	return model;
 	}
 
-	@GetMapping("/homepage/viewcart")
+	@GetMapping("/viewcart")
 	public ModelAndView viewCart() {
 	ModelAndView model = new ModelAndView();
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	User user = userService.findOne (auth.getName());
-	ShoppingCart cart = shoppingCartService.findByUserId(user.getEmail());
+	ShoppingCart cart = shoppingCartService.findByUserEmail(user.getEmail());
 
 	ArrayList<CartItems> cart_items = new ArrayList<CartItems>();
 	cart_items.addAll(cart.getCartItems());

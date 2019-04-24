@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +20,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class ShoppingCart {
 	
 	@Id
-	@NotEmpty
 /*	@Column(unique = true)*/
 	private int cartId;
 	
@@ -32,7 +32,8 @@ public class ShoppingCart {
 	@OneToMany(mappedBy = "shoppingCart")
 	private Set<CartItems> cartItems;
 	
-	@OneToOne(mappedBy = "shoppingCart")
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_email", nullable = false)
 	private User user;
 
 	public int getCartId() {

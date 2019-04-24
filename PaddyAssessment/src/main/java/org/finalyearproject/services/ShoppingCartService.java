@@ -17,8 +17,8 @@ public class ShoppingCartService {
 	}
 
 	
-	public ShoppingCart findByUserId(String userId) {
-		return shoppingCartRepository.findByUserEmail(userId);
+	public ShoppingCart findByUserEmail(String email) {
+		return shoppingCartRepository.findByUserEmail(email);
 	}
 
 	

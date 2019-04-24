@@ -2,7 +2,9 @@ package org.finalyearproject.controllers;
 
 import javax.validation.Valid;
 
+import org.finalyearproject.entities.ShoppingCart;
 import org.finalyearproject.entities.User;
+import org.finalyearproject.services.ShoppingCartService;
 import org.finalyearproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegisterController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 
 	@GetMapping("/register")
 	public String registerForm(Model model) {
@@ -36,6 +41,9 @@ public class RegisterController {
 
 		}
 		userService.createUser(user);
+		ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.setUser(user);
+		shoppingCartService.saveShoppingCart(shoppingCart);
 		
 		return "views/success";
 
