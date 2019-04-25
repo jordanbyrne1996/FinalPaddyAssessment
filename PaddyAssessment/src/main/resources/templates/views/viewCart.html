@@ -15,9 +15,13 @@
 					class="btn btn-primary" />
 			</div>
 		</form>
-		<!-- <form action="/addTrip" class="form-inline">
-			<input type="submit" value="Create New Trip" class="btn btn-primary" />
-		</form> -->
+		
+		<form action="/placeOrder" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="submit" value="Place Order" class="btn btn-primary" />
+			</div>
+		</form>
+		
 		<div class="card">
 			<div class="card card-body">
 				<table class="table table-hover">
@@ -27,7 +31,6 @@
 							<th>Manufacturer</th>
 							<th>Title</th>
 							<th>Quantity</th>
-							<th>Total Price</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,12 +39,15 @@
 							<td th:text="${cartItem.item.manufacturer}"></td>
 							<td th:text="${cartItem.item.title}"></td>
 							<td th:text="${cartItem.quantity}"></td>
-							<td th:value='total'/></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
+		<div class="container">
+			<h2>Your Cart Total is: Euro <span th:utext="${total}"></span></h2>
+		</div>
+		
 	</div>
 </body>
 </html> 

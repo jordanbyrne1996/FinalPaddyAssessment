@@ -1,5 +1,6 @@
 package org.finalyearproject.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -59,14 +60,19 @@ public class ShoppingCart {
 		this.cartItems = cartItems;
 	}
 
-	/*public List<Item> getItems() {
-		return items;
+	public double calculateTotal() {
+		double total = 0;
+		ArrayList<CartItems> cart_items = new ArrayList<>();
+		cart_items.addAll(this.getCartItems());
+		
+		for(int i = 0; i < cart_items.size(); i++) {
+			Item item = cart_items.get(i).getItem();
+			total += item.getPrice() * cart_items.get(i).getQuantity();
+		}
+		
+		return total;
 	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-*/
+	
 	public ShoppingCart(int cartId, User user) {
 		this.cartId = cartId;
 		this.user = user;

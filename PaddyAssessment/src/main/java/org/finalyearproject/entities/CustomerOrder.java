@@ -31,6 +31,8 @@ public class CustomerOrder {
 					@JoinColumn(name = "ITEM_ID", referencedColumnName = "itemId") })
 	private List<Item> items;
 	
+	private double total;
+	
 
 	public Long getOrderId() {
 		return orderId;
@@ -57,9 +59,19 @@ public class CustomerOrder {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 
-	public CustomerOrder(Long orderId) {
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public CustomerOrder(Long orderId, double total) {
 		this.orderId = orderId;
+		this.total = total;
 	}
 	
 	public CustomerOrder() {
