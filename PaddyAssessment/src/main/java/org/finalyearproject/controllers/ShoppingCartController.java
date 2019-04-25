@@ -38,10 +38,9 @@ public class ShoppingCartController {
 	@Autowired
 	private CartItemsService cartItemsService;
 
-	/*@GetMapping("/homepage/addtocart/{id}")*/
+	
 	@GetMapping("/addtocart")
 	public String addToCart(@RequestParam("itemId") int id, @RequestParam(defaultValue = "") String title, Model model) {
-	//ModelAndView model = new ModelAndView();
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	User user = userService.findOne(auth.getName());
 
@@ -83,14 +82,12 @@ public class ShoppingCartController {
 
 	List<Item> items = itemService.findByTitle(title);
 	model.addAttribute("items", items);
-	//model.setViewName("itemList");
 
 	return "views/itemList";
 	}
 
 	@GetMapping("/viewcart")
-	public ModelAndView viewCart() {
-	ModelAndView model = new ModelAndView();
+	public String viewCart(Model model) {
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	User user = userService.findOne (auth.getName());
 	ShoppingCart cart = shoppingCartService.findByUserEmail(user.getEmail());
@@ -105,11 +102,10 @@ public class ShoppingCartController {
 	total = total + (item.getPrice() * cartItem.getQuantity());
 	}
 
-	model.addObject("cart", cart);
-	model.addObject("cartitems", cart_items);
-	model.addObject("total", total);
-	model.setViewName("view_cart");
+	model.addAttribute("cart", cart);
+	model.addAttribute("cartitems", cart_items);
+	model.addAttribute("total", total);
 
-	return model;
+	return "views/viewCart";
 	}
 }
