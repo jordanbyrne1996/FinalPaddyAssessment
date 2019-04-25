@@ -86,7 +86,7 @@ public class ShoppingCartController {
 	return "views/itemList";
 	}
 
-	@GetMapping("/viewcart")
+	@GetMapping("/viewCart")
 	public String viewCart(Model model) {
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	User user = userService.findOne (auth.getName());
@@ -103,7 +103,7 @@ public class ShoppingCartController {
 	}
 
 	model.addAttribute("cart", cart);
-	model.addAttribute("cartitems", cart_items);
+	model.addAttribute("cartItems", cart_items);
 	model.addAttribute("total", total);
 
 	return "views/viewCart";

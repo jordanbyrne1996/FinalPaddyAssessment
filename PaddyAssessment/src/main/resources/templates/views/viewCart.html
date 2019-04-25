@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>View Cart Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+		<form action="/items" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="text" class="form-control" name="title"
+					placeholder="Search Item Title" /> <input type="submit" value="Search"
+					class="btn btn-primary" />
+			</div>
+		</form>
+		<!-- <form action="/addTrip" class="form-inline">
+			<input type="submit" value="Create New Trip" class="btn btn-primary" />
+		</form> -->
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Category</th>
+							<th>Manufacturer</th>
+							<th>Title</th>
+							<th>Quantity</th>
+							<th>Total Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cartItem:${cartItems}">
+							<td th:text="${cartItem.item.category}"></td>
+							<td th:text="${cartItem.item.manufacturer}"></td>
+							<td th:text="${cartItem.item.title}"></td>
+							<td th:text="${cartItem.quantity}"></td>
+							<td th:value='total'/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html> 
