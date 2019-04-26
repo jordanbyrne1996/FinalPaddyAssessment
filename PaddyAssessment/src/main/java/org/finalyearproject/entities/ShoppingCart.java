@@ -73,6 +73,12 @@ public class ShoppingCart {
 		return total;
 	}
 	
+	/*public boolean payment(PaymentMethod paymentMethod) {
+		
+		double total = calculateTotal();
+		return paymentMethod.payment(total);
+	}*/
+	
 	public ShoppingCart(int cartId, User user) {
 		this.cartId = cartId;
 		this.user = user;

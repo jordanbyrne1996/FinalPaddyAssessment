@@ -1,5 +1,7 @@
 package org.finalyearproject.services;
 
+import java.util.List;
+
 import org.finalyearproject.entities.CartItems;
 import org.finalyearproject.repositories.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ public class CartItemsService {
 	private CartItemRepository cartItemRepository;
 
 	
-	public CartItems findByCartId(int cartId) {
+	public List<CartItems> findByCartId(int cartId) {
 		return cartItemRepository.findByShoppingCartCartId(cartId);
 	}
 
@@ -24,5 +26,9 @@ public class CartItemsService {
 	
 	public void saveCartItems(CartItems cartItems) {
 		cartItemRepository.save(cartItems);
+	}
+	
+	public void emptyCart(List<CartItems> list) {
+		cartItemRepository.delete(list);
 	}
 }
