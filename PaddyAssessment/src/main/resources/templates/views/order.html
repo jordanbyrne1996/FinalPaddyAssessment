@@ -9,8 +9,17 @@
 
 	<div layout:fragment="content" class="container mySpace">
 		
+		<div class="container">
+			<h2>Your Cart Total is: Euro <span th:utext="${total}"></span></h2>
+		</div>
 		
-		<div class="card">
+		<form action="/payment" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="submit" value="Proceed To Payment" class="btn btn-primary" />
+			</div>
+		</form>
+		
+		<!-- <div class="card">
 			<div class="card card-body">
 				<table class="table table-hover">
 					<thead>
@@ -19,14 +28,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr> <!-- th:each="item:${items}" -->
+						<tr> th:each="item:${items}"
 							<td th:utext="${total}"></td>
 							<td><a th:href="@{/addtocart(itemId=${item.itemId})}"  class="btn btn-primary">Add To Cart</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </body>
 </html> 
